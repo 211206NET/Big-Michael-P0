@@ -1,9 +1,14 @@
+using StoreDL;
+using StoreBL;
 namespace UI;
 
-public class Mainmenu{
+public static class Mainmenu{
 
-    public void Start(){
+    public static void Start(){
 
+        string connectionString = File.ReadAllText("connectionString.txt");
+        IRepo repo = new DBRepo(connectionString);
+        IBL BL = new BL(repo);
         bool exit = false;
 
         while(!exit){
@@ -20,7 +25,7 @@ public class Mainmenu{
                 {
                     case "1":
                         // signup menu instantiation
-                        
+                        //start
                         
                     break;
                     case "2":
