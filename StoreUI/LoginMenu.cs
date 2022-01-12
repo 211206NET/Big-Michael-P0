@@ -7,7 +7,6 @@ namespace UI;
 public class Login{
 
     private IBL _bl;
-
     public Login(IBL bl)
     {
         _bl = bl;

@@ -80,7 +80,6 @@ public class DBRepo : IRepo
                     while (reader.Read())
                     {
                         Customer uInfo = new Customer();
-                        //CID = reader.GetInt32(0);
                         uInfo.UserName = reader.GetString(1);
                         uInfo.Password = reader.GetString(2);
 
@@ -92,21 +91,6 @@ public class DBRepo : IRepo
         }
         return userinfo;
 
-//     Customer IRepo.AddCustomer(Customer customerinfo)
-//     {
-//         throw new NotImplementedException();
-//     }
-// }
 
-//     public List<Customer> GetAllCustomer()
-//     {
-//         using(SqlConnection connection = new SqlConnection(_connectionString)
-//         {
-//             using(SqlDataAdapter dataAdapter = new SqlDataAdapter(selectCmd, connection));
-
-
-//         }
-            
-    //}
 }
 }
