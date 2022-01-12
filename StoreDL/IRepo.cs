@@ -19,4 +19,8 @@ public interface IRepo
     List<Customer> GetAllCustomer();
     
     Customer AddCustomer(Customer customerinfo);
+    void newstore(Storefront newStore);
+    List<Storefront> GetAllStores();
+
+
 }

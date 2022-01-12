@@ -19,4 +19,13 @@ public class BL : IBL
         return _dl.AddCustomer(signupinfo);
     }
 
+    public void newstore(Storefront newStore)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<Storefront> GetAllStores()
+    {
+        return _dl.GetAllStores();
+    }
 }

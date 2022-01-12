@@ -27,7 +27,6 @@ public class DBRepo : IRepo
 
                 DataTable userTable = userinfo.Tables["UserTable"];
                 
-                
                 //Generate a new row with the Restaurant Table Schema
                 DataRow newRow = userTable.NewRow();
                 
@@ -93,4 +92,39 @@ public class DBRepo : IRepo
 
 
 }
+
+    public List<Storefront> GetAllStores()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void newstore(Storefront newStore)
+    {
+        DataSet userinfo = new DataSet();
+        string selectCmd = "SELECT * FROM StoreFront WHERE Id = -1";
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            using(SqlDataAdapter dataAdapter = new SqlDataAdapter(selectCmd, connection))
+            {
+                
+                dataAdapter.Fill(userinfo, "StoreFrontTable");
+
+                DataTable userTable = userinfo.Tables["StoreFrontTable"];
+                
+                //Generate a new row with the Restaurant Table Schema
+                DataRow newRow = userTable.NewRow();                
+                newRow["Address"] = newStore.Address;
+
+                //add the new row to our restaurantTable Rows
+                userTable.Rows.Add(newRow);
+                SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand();
+                
+               
+                dataAdapter.Update(userTable);
+            }
+
+                
+        }
+    }
 }
