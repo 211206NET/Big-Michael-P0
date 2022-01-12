@@ -76,17 +76,24 @@ public class DBRepo : IRepo
             {
                 using(SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
-                        Customer uInfo = new Customer();
-                        uInfo.UserName = reader.GetString(1);
-                        uInfo.Password = reader.GetString(2);
+                    try {
+                        while (reader.Read())
+                        {
+                            Customer uInfo = new Customer();
+                            uInfo.UserName = reader.GetString(1);
+                            uInfo.Password = reader.GetString(2);
 
-                        userinfo.Add(uInfo);
-                    }
+                            userinfo.Add(uInfo);
+                        }
+                    
+                        connection.Close();
+                    }   
+                catch (SqlException ex) {
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.Source);
+                }
                 }
             }
-            connection.Close();
         }
         return userinfo;
 
