@@ -24,14 +24,13 @@ public static class Mainmenu{
                 switch (input)
                 {
                     case "1":
-                        // signup menu instantiation
-                        //start
-                        
+                        Signup signup = new Signup();
+                        signup.start();
                     break;
                     case "2":
                         //login menu
-                        Login login = new Login();
-                        login.start();
+                        Login login = new Login(BL);
+                        login.Start();
                         
                     break;
                     case "x":

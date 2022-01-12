@@ -7,12 +7,9 @@ namespace UI;
 public class Signup{
     public void start(){
         
-        Console.WriteLine("Please enter user ID");
-        //figure out parse vs convert int
+        Console.WriteLine("Please enter your UserName:");
         string input = Console.ReadLine() ?? "";
-        //Int32.TryParse
-        int UserId = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("Please input password");
+        Console.WriteLine("Please input password:");
         string Password = Console.ReadLine() ??"";
 
         // need DL stuff to check info
@@ -26,10 +23,11 @@ public class Signup{
     
     };
     
-    Customer savedCustomer = new BL(new DL()).AddCustomer(signup);
-    IRepo repo = new DBRepo;
+    string connectionstring = File.ReadAllText("connectionString.txt");
+    Customer savedCustomer = new BL(new DBRepo(connectionstring)).AddCustomer(signup);
+    // IRepo repo = new DBRepo;
     }
 }
 
-        string connectionString = File.ReadAllText("connectionString.txt");
-        IRepo repo = new DBRepo(connectionString);
+        // string connectionString = File.ReadAllText("connectionString.txt");
+        // IRepo repo = new DBRepo(connectionString);

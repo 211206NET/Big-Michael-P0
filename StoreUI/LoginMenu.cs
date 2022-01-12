@@ -1,23 +1,42 @@
+using Models;
+using StoreBL;
+using StoreDL;
 namespace UI;
 
 
 public class Login{
-    public void start(){
-        
-        Console.WriteLine("Please enter user ID");
-        //figure out parse vs convert int
-        string input = Console.ReadLine() ?? "";
-        int userid = Int32.Parse(input);
-        //Int32.TryParse
-        int UserId = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("Please input password");
-        string? Password = Console.ReadLine();
 
-        // need DL stuff to check info
-        Console.WriteLine("Glad to have you!");
-        CustomerMenu customerMenu = new CustomerMenu();
-        customerMenu.start();
+    private IBL _bl;
 
-
+    public Login(IBL bl)
+    {
+        _bl = bl;
+    }
+    
+    
+    public void Start()
+    {
+        List<Customer> allusers = _bl.GetAllCustomer();
+        Console.WriteLine("Username: ");
+        string username = Console.ReadLine() ??"";
+        Console.WriteLine("Password: ");
+        string password = Console.ReadLine() ??"";
+        Customer login = new Customer
+            {
+                UserName = username ??"",
+                Password = password ??"",
+            };
+        bool possibleUsername = allusers.Exists(x => x.UserName == login.UserName);
+        bool possiblePassword = allusers.Exists(x => x.Password == login.Password);
+        if (possiblePassword && possibleUsername)
+        {
+            Console.WriteLine($"Welcome back, {login.UserName}");
+            
+        }
+        else
+        {
+            Console.WriteLine("Invalid Username or password");
+            Mainmenu.Start();
+        }
     }
 }

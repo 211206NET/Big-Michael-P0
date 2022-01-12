@@ -1,6 +1,8 @@
 using Models;
+using StoreDL;
+
 namespace StoreBL;
-public interface IBL
+public interface IBL : IRepo
 {
     List<Customer> GetAllCustomer();
 }
